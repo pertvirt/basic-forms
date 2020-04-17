@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-demo-form-sku-with-builder',
@@ -6,10 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./demo-form-sku-with-builder.component.css']
 })
 export class DemoFormSkuWithBuilderComponent implements OnInit {
+  myForm: FormGroup;
 
-  constructor() { }
+  constructor(fb: FormBuilder) {
+    this.myForm = fb.group({
+      sku: ['ABC123']
+    });
+  }
 
   ngOnInit() {
+  }
+
+  onSubmit(value: string): void {
+    console.log('you submitted value:', value);
   }
 
 }
