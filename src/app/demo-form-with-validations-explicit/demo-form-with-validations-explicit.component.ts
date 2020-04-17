@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {AbstractControl, Form, FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-demo-form-with-validations-explicit',
@@ -6,10 +7,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./demo-form-with-validations-explicit.component.css']
 })
 export class DemoFormWithValidationsExplicitComponent implements OnInit {
+  myForm: FormGroup;
+  sku: AbstractControl;
 
-  constructor() { }
+  constructor(fb: FormBuilder) {
+    this.myForm = fb.group({
+      'sku': ['', Validators.required]
+    });
+
+    this.sku = this.myForm.controls['sku'];
+  }
 
   ngOnInit() {
+  }
+
+  onSubmit(value: string): void {
+    console.log('you submitted value: ', value);
   }
 
 }
